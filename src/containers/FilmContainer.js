@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import FilmSelector from '../components/FilmSelector.js'
-import FilmDetail from '../components/FilmDetail.js'
+import FilmSelector from '../components/FilmSelector.js';
+import FilmDetail from '../components/FilmDetail.js';
 
 class FilmContainer extends Component{
   constructor(props) {
@@ -9,14 +9,16 @@ class FilmContainer extends Component{
       films: [],
       currentFilm: null
     };
+    this.handleFilmSelected = this.handleFilmSelected.bind(this);
   }
 
   componentDidMount(){
-    const url='https://rss.itunes.apple.com/api/v1/us/movies/top-movies/all/10/explicit.json'
+    console.log('component Did Mount');
+    const url='https://itunes.apple.com/gb/rss/topsongs/limit=20/json';
 
   fetch(url)
   .then(res => res.json())
-  .then(films => this.setState({films: films}))
+  .then(films => this.setState({films: films.feed.entry}))
   .catch(err => console.error);
 
 }
@@ -27,13 +29,15 @@ handleFilmSelected(index) {
 }
 
 render() {
+  console.log('render');
+  console.log(this.state.films);
   return (
     <div>
-    <h1>Film Container</h1>
+    <h1>Top 20 UK Songs</h1>
     <FilmSelector films={this.state.films} onFilmSelected={this.handleFilmSelected}/>
     <FilmDetail film={this.state.currentFilm}/>
     </div>
-  )
+  );
 }
 
 
