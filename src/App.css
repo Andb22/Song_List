@@ -39,6 +39,10 @@
   }
 }
 
+ul {
+  list-style: none;
+}
+
 h1 {
 
   display: flex;
@@ -48,9 +52,7 @@ h1 {
 }
 
 select {
-
   margin-left: 10em;
-
 }
 
 option {
@@ -58,7 +60,6 @@ option {
   display: flex;
   justify-content: center;
   padding: 5px;
-
 }
 
 a {
